@@ -42,6 +42,7 @@ export default {
       alert("entre")
      
         arrInvoice.value = {
+        
           idusuario: user.value,
           proveedor: proveedor.value,
           monto: monto.value,
