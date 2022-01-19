@@ -36,7 +36,9 @@ setup(){
 
   console.log(pass.value,user.value);
               
-         
+         //Search user in DB =>exec action
+         //Only change localhost & port
+          //the database is in aws
          axios
          .get(
          `http://localhost:58683/api/usuario/GetUser/${pass.value}`
@@ -54,6 +56,9 @@ if(pass.value===contrasena){route.replace('/insertinfo');
   alert("USUARIO Y/O CONTRASEÑA INVALIDA");
 }
         
+         }).catch(()=>{
+
+           alert("VERIFIQUE LA CONEXCION")
          });
     }
 

@@ -94,6 +94,9 @@ testValue.value+=1;
           comentario: comentario.value,
         };
         console.log(arrInvoice.value);
+         //Create invoice 
+         //Only change localhost & port
+          //the database is in the cloud
         await axios
           .post(`http://localhost:58683/api/recibo/`, arrInvoice.value)
           .then((response) => {

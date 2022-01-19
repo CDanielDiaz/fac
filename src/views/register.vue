@@ -49,6 +49,9 @@ export default {
         usuario:user.value,
         contrasena:pass.value
       }
+       //Create new user 
+      //Only change localhost & port
+      //the database is in aws
       axios
         .post("http://localhost:58683/api/usuario", 
         arrNewuser.value,
@@ -56,9 +59,12 @@ export default {
         .then((response) => {
           /* eslint-disable camelcase */ /* eslint-disable camelcase */
           console.log(response);
-        });
+           route.replace("/");
+        }).catch(()=>{
+         alert("EL USUARIO NO FUE CREADO, VERIFIQUE CONEXION O CAMPOS")
+        })
 
-      route.replace("/");
+      
       }
 else{
   alert("Faltan Datos")

@@ -108,6 +108,9 @@ export default {
     const arrInvoices = ref([]);
 const countError=ref();
     async function getInvoices() {
+       //GET invoices 
+         //Only change localhost & port
+          //the database is in the cloud
       await axios
         .get(`http://localhost:58683/api/recibo/${user.value}`)
         .then((response) => {
@@ -124,9 +127,15 @@ const countError=ref();
             });
           });
           console.log(arrInvoices.value);
-        });
+        }).catch(()=>{
+
+           alert("VERIFIQUE LA CONEXCION")
+         })
     }
     async function del(params){
+       //delete invoice 
+         //Only change localhost & port
+          //the database is in aws
        await axios
         .delete(`http://localhost:58683/api/recibo/${params}`)
         .then((response) => {console.log(response);
@@ -134,7 +143,10 @@ const countError=ref();
       testValue.value = "";
       select.value = "";
       arrInvoices.value = [];
-      getInvoices();});
+      getInvoices();}).catch(()=>{
+
+           alert("VERIFIQUE LA CONEXCION")
+         })
 
     }
     function check(params) {
@@ -180,10 +192,15 @@ if(countError.value ===0){
         fecha: params3,
         comentario: params4,
       };
-
+ //Update invoice in DB =>exec action
+         //Only change localhost & port
+          //the database is in the cloud
          await axios
         .put(`http://localhost:58683/api/recibo/`,arrUpdate.value)
-        .then((response) => {console.log(response);});
+        .then((response) => {console.log(response);}).catch(()=>{
+
+           alert("VERIFIQUE LA CONEXCION")
+         })
 
       console.log(arrUpdate.value);
       arrUpdate.value = {};
