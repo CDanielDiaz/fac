@@ -1,7 +1,7 @@
  import { createStore } from 'vuex'
 
  export default createStore({  state: {
-     id:123
+     id:0
    },
    mutations: {
      SET_USER(state,id){

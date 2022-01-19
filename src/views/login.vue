@@ -14,7 +14,7 @@
       <br>
 <router-link to="/register" class="form-input">Registrarse</router-link>    </div>
   </div>
-  {{acc}}
+  
 </template>
 
 <script>

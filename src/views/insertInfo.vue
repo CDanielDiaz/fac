@@ -37,7 +37,7 @@
       <button class="submit" @click="newInvoice(item)">Cargar</button>
     </div>
   </div>
-  {{ user }}
+  
 </template>
 
 <script>
@@ -59,15 +59,30 @@ export default {
     const comentario = ref();
     const arrInvoice = ref({});
     const store = useStore();
+    const testValue=ref(0);
     const user = computed(() => store.state.id);
 function check(params) {
   console.log(params);
   moneda.value=params;
 }
     async function newInvoice() {
-      alert("entre")
-      
-     
+   
+      if(proveedor.value===undefined){
+testValue.value+=1;
+      }
+      if(monto.value===undefined){
+testValue.value+=1;
+      }
+      if(moneda.value===undefined){
+testValue.value+=1;
+      }
+      if(comentario.value===undefined){
+testValue.value+=1;
+      }
+      if(fecha.value===undefined){
+testValue.value+=1;
+      }
+     if(testValue.value===0){
         arrInvoice.value = {
         
           idusuario: user.value,
@@ -82,9 +97,15 @@ function check(params) {
           .post(`http://localhost:58683/api/recibo/`, arrInvoice.value)
           .then((response) => {
             /* eslint-disable camelcase */ /* eslint-disable camelcase */
-            console.log(response);
+            console.log(response.data);
+            let idRecib=response.data;
+            alert("EL # DE RECIBO ES " + idRecib)
+            idRecib=0
           });
-      
+     }else{
+       alert("Faltan campos");
+       testValue.value=0
+     }
     }
     return {
       user,
