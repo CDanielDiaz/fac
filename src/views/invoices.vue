@@ -1,7 +1,11 @@
 <template>
   <div id="nav">
     <router-link to="/insertinfo">Cargar</router-link> |
-    <router-link to="/invoices">Ver Recibos</router-link>
+    <router-link to="/invoices">Ver Recibos</router-link>|
+ 
+   
+       <router-link to="/" @click="cerrar()">Cerrar Sesion</router-link>
+
   </div>
   <div class="login">
     <h1 class="title">Recibos</h1>
@@ -100,7 +104,7 @@ export default {
     const route = useRouter();
     const arrUpdate = ref({});
     const select = ref();
-    const testValue = ref();
+    const testValue = ref(0);
     const arrInvoices = ref([]);
 const countError=ref();
     async function getInvoices() {
@@ -204,8 +208,10 @@ if(countError.value ===0){
     onMounted(() => {
       getInvoices();
     });
-
-    return { enter, check, arrInvoices, monedas, Update, updateInvoice,del};
+  function cerrar() {
+        store.commit("SET_USER",0);
+     }
+    return { enter, cerrar,check, arrInvoices, monedas, Update, updateInvoice,del};
   },
 };
 </script>

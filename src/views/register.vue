@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <button @click="retornar()" class="submit"><h2>Regresar</h2></button>
     <h1 class="title">Register</h1>
     <div class="form">
       <label class="form-label" for="#email">Usuario:</label>
@@ -31,6 +32,7 @@ import { onMounted, ref } from "vue";
 
 import axios from "axios";
 import { useRouter } from "vue-router";
+
 export default {
   setup() {
 
@@ -62,10 +64,12 @@ else{
   alert("Faltan Datos")
 }
     }
-
+ function retornar(){
+route.replace("/");
+  }
     onMounted(() => {});
 
-    return { register, pass, user };
+    return { register,retornar, pass, user };
   },
 };
 </script>

@@ -1,7 +1,8 @@
 <template>
   <div id="nav">
     <router-link to="/insertinfo">Cargar</router-link> |
-    <router-link to="/invoices">Ver Recibos</router-link>
+    <router-link to="/invoices">Ver Recibos</router-link> |
+    <router-link to="/" @click="cerrar()">Cerrar Sesion</router-link>
   </div>
   <div class="login">
     <h1 class="title">Cargar</h1>
@@ -106,11 +107,16 @@ testValue.value+=1;
        alert("Faltan campos");
        testValue.value=0
      }
+    
     }
+     function cerrar() {
+        store.commit("SET_USER",0);
+     }
     return {
       user,
       monedas,
       mon,
+      cerrar,
       newInvoice,
       proveedor,
       monto,
