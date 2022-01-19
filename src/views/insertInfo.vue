@@ -12,12 +12,29 @@
       <label class="form-label" for="#monto">Monto:</label>
       <input class="form-input" v-model="monto" placeholder="Monto" />
       <label class="form-label" for="#Moneda">Moneda:</label>
-      <input class="form-input" v-model="moneda" placeholder="Moneda" />
+  
+
+
+  <select class="form-select" name="monedas" @change="$emit('update:monedas', $event.target.value),check($event.target.value)">
+        <option value="">Selecciona una opción</option>
+        <option
+            v-for="item of monedas"
+            :value="item"
+            :key="item"
+            :selected="genre === item"
+        >
+            {{ item }}
+        </option>
+    </select>
+
+
+
+
       <label class="form-label" for="#fecha">Fecha:</label>
       <input type="date" v-model="fecha" placeholder="Fecha" />
       <label class="form-label" for="#comentario">Comentario:</label>
       <textarea placeholder="comentario" v-model="comentario"> </textarea>
-      <button class="submit" @click="newInvoice()">Cargar</button>
+      <button class="submit" @click="newInvoice(item)">Cargar</button>
     </div>
   </div>
   {{ user }}
@@ -28,7 +45,13 @@ import { useStore } from "vuex";
 import { computed, ref } from "vue";
 import axios from "axios";
 export default {
+ 
   setup() {
+     const monedas = ref([
+        'MXN',
+        'USD',
+    ]);
+    const mon=ref();
     const proveedor = ref();
     const monto = ref();
     const moneda = ref();
@@ -37,9 +60,13 @@ export default {
     const arrInvoice = ref({});
     const store = useStore();
     const user = computed(() => store.state.id);
-
+function check(params) {
+  console.log(params);
+  moneda.value=params;
+}
     async function newInvoice() {
       alert("entre")
+      
      
         arrInvoice.value = {
         
@@ -61,9 +88,12 @@ export default {
     }
     return {
       user,
+      monedas,
+      mon,
       newInvoice,
       proveedor,
       monto,
+      check, 
       moneda,
       fecha,
       comentario,
@@ -107,6 +137,17 @@ export default {
   background-image: none;
   border: 1px solid white;
   color: white;
+  &:focus {
+    outline: 0;
+    border-color: #1ab188;
+  }
+}
+.form-select {
+  padding: 10px 15px;
+  background: none;
+  background-image: none;
+  border: 1px solid white;
+  color: black;
   &:focus {
     outline: 0;
     border-color: #1ab188;

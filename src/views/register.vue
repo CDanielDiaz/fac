@@ -44,7 +44,7 @@ export default {
       if(user.value!==undefined&&pass.value!==undefined){ 
         console.log(pass.value);
       arrNewuser.value={
-        usuario:user.value.toString(),
+        usuario:user.value,
         contrasena:pass.value
       }
       axios
